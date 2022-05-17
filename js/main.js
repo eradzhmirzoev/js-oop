@@ -1,5 +1,6 @@
-function Clock() {
-    this.divClock = document.querySelector('.clock');
+const divClock = document.querySelector('.clock');
+
+function Clock(divClock) {
     this.arr = [];
 
     this.pushArr = function() {
@@ -12,32 +13,35 @@ function Clock() {
             this.arr[i].classList.toggle('short-format');
         }
     };
+
+    divClock.addEventListener('click', this.changeOption.bind(this));
+
     
     this.showTime = function() {
         for (let i = 0; i < this.arr.length; i++) {
-            if(this.arr[i].className !== 'short-format') {
+            if (this.arr[i].className !== 'short-format') {
                 this.arr[i].innerHTML = new Date().toTimeString().split(' ')[0];
+
             } else {
                 this.arr[i].innerHTML = new Date().toTimeString().split(' ')[0].substring(0,5);
             }
-            
-            this.divClock.append(this.arr[i]);
+            divClock.append(this.arr[i]);
         }
+
     };
 
     this.render = function() {
         this.pushArr();
-        this.divClock.addEventListener('click', this.changeOption.bind(this));
-
         setInterval(()=> this.showTime(), 1000);
     };
 }
 
-let clock = new Clock();
+let clock = new Clock(divClock);
 
 
 clock.render();
 clock.render();
 clock.render();
-
+clock.render();
+clock.render();
 
