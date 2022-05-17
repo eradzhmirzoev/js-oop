@@ -1,6 +1,5 @@
-const divClock = document.querySelector('.clock');
-
-function Clock(divClock) {
+function Clock() {
+    this.divClock = document.querySelector('.clock');
     this.arr = [];
 
     this.pushArr = function() {
@@ -9,12 +8,10 @@ function Clock(divClock) {
     };
     
     this.changeOption = function(e) {
-        for(let i = 0; i < this.arr.length; i++) {
-            this.arr[i].classList.toggle('short-format');
-        }
+        e.target.classList.toggle('short-format');
     };
 
-    divClock.addEventListener('click', this.changeOption.bind(this));
+    this.divClock.addEventListener('click', this.changeOption.bind(this));
 
     this.showTime = function() {
         for (let i = 0; i < this.arr.length; i++) {
@@ -23,7 +20,7 @@ function Clock(divClock) {
             } else {
                 this.arr[i].innerHTML = new Date().toTimeString().split(' ')[0].substring(0,5);
             }
-            divClock.append(this.arr[i]);
+            this.divClock.append(this.arr[i]);
         }
     };
 
@@ -33,11 +30,12 @@ function Clock(divClock) {
     };
 }
 
-let clock = new Clock(divClock);
+let clock = new Clock();
 
 
 clock.render();
 clock.render();
 clock.render();
+
 
 
