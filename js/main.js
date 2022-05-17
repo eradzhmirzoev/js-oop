@@ -16,18 +16,15 @@ function Clock(divClock) {
 
     divClock.addEventListener('click', this.changeOption.bind(this));
 
-    
     this.showTime = function() {
         for (let i = 0; i < this.arr.length; i++) {
             if (this.arr[i].className !== 'short-format') {
                 this.arr[i].innerHTML = new Date().toTimeString().split(' ')[0];
-
             } else {
                 this.arr[i].innerHTML = new Date().toTimeString().split(' ')[0].substring(0,5);
             }
             divClock.append(this.arr[i]);
         }
-
     };
 
     this.render = function() {
@@ -42,6 +39,5 @@ let clock = new Clock(divClock);
 clock.render();
 clock.render();
 clock.render();
-clock.render();
-clock.render();
+
 
